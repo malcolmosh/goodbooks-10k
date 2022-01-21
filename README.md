@@ -1,6 +1,8 @@
 # goodbooks-10k EXPANSION PACK
 
-This is an extended version of the [Goodbooks 10k dataset](https://github.com/zygmuntz/goodbooks-10k), originally scraped from the Goodreads API in September 2017 by Zygmunt Zając. **The biggest advantage of this new version that it adds a text description field for 9943 of the 10 000 titles.** Please consult the original repository for additional information on the original files. 
+This is an extended version of the [Goodbooks 10k dataset](https://github.com/zygmuntz/goodbooks-10k), originally scraped from the Goodreads API in September 2017 by Zygmunt Zając. **The biggest advantage of this new version that it adds a text description field for 9943 of the 10 000 titles.** Please consult the original repository for additional information on the original files.
+
+A detailed analysis as well as modelling strategies are presented [here](https://github.com/malcolmosh/MATH80629/blob/main/MATH_80629_Book_recommender_system.ipynb).
 
 Additional fields have been added to the original books.csv file via two strategies: 
 * Pulling attributes from cross-referenced titles in the [Best Books Ever Dataset](https://zenodo.org/record/4265096#.YesDbi3pNB0), collected from the Goodreads website in Fall 2020 by Lorena Casanova Lozano and Sergio Costa Planells. From what I gather, they used the Selenium package to parse book webpages. 
