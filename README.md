@@ -19,10 +19,11 @@ The two updated fields integrated in this version are :
 
 # Importing the file
 
-`import pandas as pd
+```
+import pandas as pd
 from ast import literal_eva
  
 books_df = pd.read_csv('https://raw.githubusercontent.com/malcolmosh/goodbooks-10k/master/books_enriched.csv', index_col=[0], converters={"genres": literal_eval})
-`
+```
 
 
