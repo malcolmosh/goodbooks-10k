@@ -1,61 +1,27 @@
-# goodbooks-10k
+# goodbooks-10k EXPANSION PACK
 
-This dataset contains six million ratings for ten thousand most popular (with most ratings) books. There are also:
+This is an extended version of the [Goodbooks 10k dataset](https://github.com/zygmuntz/goodbooks-10k), originally scraped from the Goodreads API in September 2017 by Zygmunt Zając. **The biggest advantage of this new version that it adds a text description field for 9943 of the 10 000 titles.** Please consult the original repository for additional information on the original files. 
 
-* books marked to read by the users
-* book metadata (author, year, etc.) 
-* tags/shelves/genres
+Additional fields have been added to the original books.csv file via two strategies: 
+	* Merging common attributes with titles from the [Best Books Ever Dataset](https://zenodo.org/record/4265096#.YesDbi3pNB0), collected from the Goodreads website in Fall 2020 by Lorena Casanova Lozano and Sergio Costa Planells. From what I gather, they used the Selenium package to parse book webpages. 
+	* For the 1833 books not cross-referenced in this dataset, the extended fields were scraped through the Goodreads api in October 2021. Although this API has officially been retired, I was able to find a developer key online that still worked. 
 
-## Access
+The four new fields added to the original books.csv file are : 
+* `description` : a free text summarizing the book's content. On average the description is 900 characters long, with 95% of book descriptions counting less than 1797 characters. This column is 99,43% complete
+* `pages` : the total page count. This column is 99.27% complete. 
+* `publishDate` : the publication date. This column is 99.92% complete
+* `genres` :  This column is 100% complete. These genres are taken from the top shelves users have assigned to a book. Only the main Goodreads genres have been kept. On average, there are 4.7 genres per title, with 75% of books containing 6 genres or less. 
 
-Some of these files are quite large, so GitHub won't show their contents online. See [samples/](samples/) for smaller CSV snippets.
+The two updated fields integrated in this version are :
+* `authors` : a newly scraped list of all book contributors. This can include illustrators and collaborators. This column is 100% complete. 
+* `language_code` : abbreviated language tags for all books, computed by scanning the book titles with the langid package. This column is 100% complete. 
 
-Open the [notebook](quick_look.ipynb) for a quick look at the data. Download individual zipped files from [releases](https://github.com/zygmuntz/goodbooks-10k/releases).
+# Importing the file
 
-The dataset is accessible from [Spotlight](https://maciejkula.github.io/spotlight/datasets/goodbooks.html), recommender software based on PyTorch.
+`import pandas as pd
+from ast import literal_eva
+ 
+books_df = pd.read_csv('https://raw.githubusercontent.com/malcolmosh/goodbooks-10k/master/books_enriched.csv', index_col=[0], converters={"genres": literal_eval})
+`
 
-## Contents
 
-**ratings.csv** contains ratings sorted by time. It is 69MB and looks like that:
-
-	user_id,book_id,rating
-	1,258,5
-	2,4081,4
-	2,260,5
-	2,9296,5
-	2,2318,3
-	
-Ratings go from one to five. Both book IDs and user IDs are contiguous. For books, they are 1-10000, for users, 1-53424. 	
-
-**to_read.csv** provides IDs of the books marked "to read" by each user, as _user_id,book_id_ pairs, sorted by time. There are close to a million pairs.
-
-**books.csv** has metadata for each book (goodreads IDs, authors, title, average rating, etc.). The metadata have been extracted from goodreads XML files, available in `books_xml`.
-
-### Tags
-
-**book_tags.csv** contains tags/shelves/genres assigned by users to books. Tags in this file are represented by their IDs. They are sorted by _goodreads_book_id_ ascending and _count_ descending. 
-
-In raw XML files, tags look like this:
-
-	<popular_shelves>
-		<shelf name="science-fiction" count="833"/>
-		<shelf name="fantasy" count="543"/>
-		<shelf name="sci-fi" count="542"/>
-		...
-		<shelf name="for-fun" count="8"/>
-		<shelf name="all-time-favorites" count="8"/>
-		<shelf name="science-fiction-and-fantasy" count="7"/>	
-	</popular_shelves>
-
-Here, each tag/shelf is given an ID. **tags.csv** translates tag IDs to names.
-
-### goodreads IDs
-
-Each book may have many editions.  _goodreads_book_id_ and _best_book_id_ generally point to the most popular edition of a given book, while goodreads  _work_id_ refers to the book in the abstract sense. 
-
-You can use the goodreads book and work IDs to create URLs as follows:
-
-https://www.goodreads.com/book/show/2767052   
-https://www.goodreads.com/work/editions/2792775  
-
-Note that _book_id_ in **ratings.csv** and **to_read.csv** maps to _work_id_, not to _goodreads_book_id_, meaning that ratings for different editions are aggregated.
