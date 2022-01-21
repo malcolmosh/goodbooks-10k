@@ -3,9 +3,9 @@
 This is an extended version of the [Goodbooks 10k dataset](https://github.com/zygmuntz/goodbooks-10k), originally scraped from the Goodreads API in September 2017 by Zygmunt Zając. **The biggest advantage of this new version that it adds a text description field for 9943 of the 10 000 titles.** Please consult the original repository for additional information on the original files. 
 
 Additional fields have been added to the original books.csv file via two strategies: 
-* Merging common attributes with titles from the [Best Books Ever Dataset](https://zenodo.org/record/4265096#.YesDbi3pNB0), collected from the Goodreads website in Fall 2020 by Lorena Casanova Lozano and Sergio Costa Planells. From what I gather, they used the Selenium package to parse book webpages. 
+* Pulling attributes from cross-referenced titles in the [Best Books Ever Dataset](https://zenodo.org/record/4265096#.YesDbi3pNB0), collected from the Goodreads website in Fall 2020 by Lorena Casanova Lozano and Sergio Costa Planells. From what I gather, they used the Selenium package to parse book webpages. 
 
-* For the 1833 books not cross-referenced in this dataset, the extended fields were scraped through the Goodreads api in October 2021. Although this API has officially been retired, I was able to find a developer key online that still worked. 
+* For the 1833 books missing from the above dataset, extended fields were scraped with the Goodreads api in October 2021. Although this API has officially been retired, I was able to find a developer key online that still worked. 
 
 The four new fields added to the original books.csv file are : 
 * `description` : a free text summarizing the book's content. On average the description is 900 characters long, with 95% of book descriptions counting less than 1797 characters. This column is 99,43% complete
