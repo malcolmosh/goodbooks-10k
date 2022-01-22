@@ -1,6 +1,6 @@
 # goodbooks-10k EXPANSION PACK
 
-This is an extended version of the [Goodbooks 10k dataset](https://github.com/zygmuntz/goodbooks-10k), originally scraped from the Goodreads API in September 2017 by Zygmunt Zając. **Additional fields are included in the books_enriched.csv file**. The biggest advantage of this new version that it adds **a text description field for 9943 of the 10 000 books.** Please consult the original repository for additional information on the original files.
+This is an extended version of the [Goodbooks 10k dataset](https://github.com/zygmuntz/goodbooks-10k), originally scraped from the Goodreads API in September 2017 by Zygmunt Zając. **Additional fields are included in the books_enriched.csv file**. The biggest advantage of this new version that it adds **a text description field for 9943 of the 10 000 books.** Please consult the original repository for additional information on the original files. As a reminder, the dataset contains six million numerical ratings of the platform’s ten thousand most popular books, with data collected from 53 424 different users. 
 
 A detailed analysis as well as modelling strategies are presented [here](https://github.com/malcolmosh/MATH80629/blob/main/MATH_80629_Book_recommender_system.ipynb).
 
